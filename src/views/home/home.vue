@@ -97,14 +97,15 @@
 </template>
 
 <script>
-import { formatTime } from '../utils/index.js'
-import centerLeft1 from "./centerLeft1";
-import centerLeft2 from "./centerLeft2";
-import centerRight1 from "./centerRight1";
-import centerRight2 from "./centerRight2";
-import center from "./center";
-import bottomLeft from "./bottomLeft";
-import bottomRight from "./bottomRight";
+import { formatTime } from '../../utils/index.js'
+import centerLeft1 from "./childComps/centerLeft1";
+import centerLeft2 from "./childComps/centerLeft2";
+import centerRight1 from "./childComps/centerRight1";
+import centerRight2 from "./childComps/centerRight2";
+import center from "./childComps/center";
+import bottomLeft from "./childComps/bottomLeft";
+import bottomRight from "./childComps/bottomRight";
+
 export default {
   data () {
     return {
@@ -146,5 +147,5 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../assets/scss/index.scss';
+  @import '../../assets/scss/home.scss';
 </style>

@@ -4,6 +4,11 @@
   </div>
 </template>
 
+<script>
+
+
+</script>
+
 <style lang="scss">
 body {
   margin: 0;
@@ -13,4 +18,5 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 </style>

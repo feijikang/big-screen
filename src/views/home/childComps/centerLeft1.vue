@@ -6,24 +6,25 @@
           <icon name="chart-bar"></icon>
         </span>
         <div class="d-flex">
-          <span class="fs-xl text mx-2">任务通过率</span>
+          <span class="fs-xl text mx-2">数据总览</span>
           <dv-decoration-3 style="width:1.25rem;height:.25rem; position:relative;top:-.0375rem;" />
         </div>
       </div>
-      <div class="d-flex jc-center">
+      <div class="d-flex jc-center" style="margin:0.6rem 0">
         <CenterLeft1Chart />
       </div>
       <!-- 4个主要的数据 -->
       <div class="bottom-data">
         <div class="item-box" v-for="(item,index) in numberData" :key="index">
-          <div class="d-flex">
-            <span class="coin">￥</span>
+          <div>
+            <p class="text" style="text-align:center;margin:5px 0">
+              {{item.text}}
+              <!-- <span class="colorYellow">(件)</span> -->
+            </p>
+            <!-- <span class="coin">￥</span> -->
             <dv-digital-flop :config="item.number" style="width:2.5rem;height:.625rem;" />
           </div>
-          <p class="text" style="text-align: center;">
-            {{item.text}}
-            <span class="colorYellow">(件)</span>
-          </p>
+         
         </div>
       </div>
     </div>
@@ -42,7 +43,7 @@ export default {
             toFixed: 1,
             content: "{nt}"
           },
-          text: "今日构建总量"
+          text: "当日销量(吨)"
         },
         {
           number: {
@@ -50,7 +51,7 @@ export default {
             toFixed: 1,
             content: "{nt}"
           },
-          text: "总共完成数量"
+          text: "当日新增客户(个)"
         },
         {
           number: {
@@ -58,7 +59,7 @@ export default {
             toFixed: 1,
             content: "{nt}"
           },
-          text: "正在编译数量"
+          text: "当日订单量(单)"
         },
         {
           number: {
@@ -66,7 +67,7 @@ export default {
             toFixed: 1,
             content: "{nt}"
           },
-          text: "未通过数量"
+          text: "当日营业额(万元)"
         }
       ]
     };
@@ -95,16 +96,18 @@ export default {
 
 <style lang="scss">
 #centerLeft1 {
-  padding: 0.2rem;
-  height: 5.125rem;
+  width: 100%;
+  height: 100%;
+  padding: 0.2rem 0.2rem 0 0.2rem ;
   min-width: 3.75rem;
   border-radius: 0.0625rem;
   .bg-color-black {
-    height: 4.8125rem;
+    height: 98%;
     border-radius: 0.125rem;
   }
   .text {
     color: #c3cbde;
+    font-size: 16px;
   }
   .chart-box {
     margin-top: 0.2rem;
@@ -116,11 +119,14 @@ export default {
   }
 
   .bottom-data {
+    display: flex;
+    flex-wrap: wrap;
     .item-box {
-      float: right;
+    
       position: relative;
       width: 50%;
       color: #d3d6dd;
+      margin-bottom: 0.2rem;
       // 金币
       .coin {
         position: absolute;

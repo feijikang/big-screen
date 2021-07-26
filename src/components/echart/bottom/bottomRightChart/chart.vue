@@ -102,7 +102,7 @@ export default {
       handler (newData) {
         this.options = {
           title: {
-            text: "",
+            // text: "1111",
             textStyle: {
               color: "#D3D6DD",
               fontSize: 24,
@@ -123,7 +123,7 @@ export default {
             itemGap: 15,
             itemWidth: 12,
             itemHeight: 12,
-            data: ["平均指标", "我的指标"],
+            data: ["平均指标", "单日指标"],
             textStyle: {
               color: "#fff",
               fontSize: 14
@@ -163,19 +163,19 @@ export default {
             },
             indicator: [
               {
-                name: "服务态度",
+                name: "产品销量",
                 max: newData.maxData
               },
               {
-                name: "产品质量",
+                name: "新增客户",
                 max: 10
               },
               {
-                name: "任务效率",
+                name: "订单总量",
                 max: 12
               },
               {
-                name: "售后保障",
+                name: "营业额",
                 max: 3.5
               }
             ]
@@ -198,12 +198,12 @@ export default {
           },
           // 下方Y轴
           yAxis: {
-            name: "工单",
+            name: "单日总销量走势图",
             nameLocation: "end",
             nameGap: 24,
             nameTextStyle: {
-              color: "rgba(255,255,255,.5)",
-              fontSize: 14
+              color: "rgba(77,161,226)",
+              fontSize: 16
             },
             max: newData.maxData,
             splitNumber: 4,
@@ -257,7 +257,7 @@ export default {
                 },
                 {
                   value: newData.radarData[6],
-                  name: "我的指标",
+                  name: "单日指标",
                   itemStyle: {
                     normal: {
                       color: "#43dfa2"
@@ -310,13 +310,13 @@ export default {
                 data: [
                   {
                     type: "average",
-                    name: "平均值"
+                    name: "平均销量"
                   }
                 ],
                 precision: 0,
                 label: {
                   normal: {
-                    formatter: "平均值: \n {c}"
+                    formatter: "平均销量: \n {c}"
                   }
                 },
                 lineStyle: {

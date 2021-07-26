@@ -35,7 +35,7 @@ export default {
       this.setData();
       this.drawTiming = setInterval(() => {
         this.setData();
-      }, 6000);
+      }, 3000);
     },
     setData () {
       // 清空轮询数据
@@ -48,7 +48,7 @@ export default {
       let dateBase = new Date();
       this.cdata.year = dateBase.getFullYear();
       // 周数据
-      for (let i = 0; i < 7; i++) {
+      for (let i = 0; i < 12; i++) {
         // 日期
         let date = new Date();
         this.cdata.weekCategory.unshift([date.getMonth() + 1, date.getDate()-i].join("/"));
@@ -59,14 +59,14 @@ export default {
         this.cdata.weekLineData.push(distance);
 
         // 雷达图数据
-        // 我的指标
+        // 单日销量
         let averageSpeed = +(Math.random() * 5 + 3).toFixed(3);
         let maxSpeed = averageSpeed + +(Math.random() * 3).toFixed(2);
         let hour = +(distance / 1000 / averageSpeed).toFixed(1);
         let radarDayData = [distance, averageSpeed, maxSpeed, hour];
         this.cdata.radarData.unshift(radarDayData);
 
-        // 平均指标
+        // 平均销量
         let distanceAvg = Math.round(Math.random() * 8000 + 4000);
         let averageSpeedAvg = +(Math.random() * 4 + 4).toFixed(3);
         let maxSpeedAvg = averageSpeedAvg + +(Math.random() * 2).toFixed(2);

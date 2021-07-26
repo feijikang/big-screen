@@ -1,115 +1,58 @@
 <template>
-  <div id="index">
-    <dv-full-screen-container class="bg">
-      <dv-loading v-if="loading">Loading...</dv-loading>
-      <div v-else class="host-body">
-        <div class="d-flex jc-center">
-          <dv-decoration-10 style="width:33.3%;height:.0625rem;" />
-          <div class="d-flex jc-center">
-            <dv-decoration-8 :color="['#568aea', '#000000']" style="width:2.5rem;height:.625rem;" />
-            <div class="title">
-              <span class="title-text">大数据可视化平台</span>
-              <dv-decoration-6
-                class="title-bototm"
-                :reverse="true"
-                :color="['#50e3c2', '#67a1e5']"
-                style="width:3.125rem;height:.1rem;"
-              />
-            </div>
-            <dv-decoration-8
-              :reverse="true"
-              :color="['#568aea', '#000000']"
-              style="width:2.5rem;height:.625rem;"
-            />
-          </div>
-          <dv-decoration-10 style="width:33.3%;height:.0625rem; transform: rotateY(180deg);" />
-        </div>
+  <div id="home">
+    <!-- <dv-loading v-if="isShow" style="width:100vw;height:100vh">加载中</dv-loading> -->
+    <!-- <dv-full-screen-container class="bg" ></dv-full-screen-container> -->
+    <div class="bg" >
 
-        <!-- 第二行 -->
-        <div class="d-flex jc-between px-2">
-          <div class="d-flex" style="width: 40%">
-            <div
-              class="react-right ml-4"
-              style="width: 6.25rem; text-align: left;background-color: #0f1325;"
-            >
-              <span class="react-before"></span>
-              <span class="text">数据分析1</span>
-            </div>
-            <div class="react-right ml-3" style="background-color: #0f1325;">
-              <span class="text colorBlue">数据分析2</span>
-            </div>
-          </div>
-          <div style="width: 40%" class="d-flex">
-            <div class="react-left bg-color-blue mr-3">
-              <span class="text fw-b">vue-big-screen</span>
-            </div>
-            <div
-              class="react-left mr-4"
-              style="width: 6.25rem; background-color: #0f1325; text-align: right;"
-            >
-              <span class="react-after"></span>
-              <span class="text">{{dateYear}} {{dateWeek}} {{dateDay}}</span>
-            </div>
-          </div>
-        </div>
+      <!-- 头部导航 -->
+      <navbar></navbar>
 
-        <div class="body-box">
-          <!-- 第三行数据 -->
-          <div class="content-box">
-            <div>
-              <dv-border-box-12>
-                <centerLeft1 />
-              </dv-border-box-12>
-            </div>
-            <div>
-              <dv-border-box-12>
-                <centerLeft2 />
-              </dv-border-box-12>
-            </div>
-            <!-- 中间 -->
-            <div>
-              <center />
-            </div>
-            <!-- 中间 -->
-            <div>
-              <centerRight2 />
-            </div>
-            <div>
-              <dv-border-box-13>
-                <centerRight1 />
-              </dv-border-box-13>
-            </div>
-          </div>
+      <!-- 左侧数据 -->
+      <dv-border-box-12 class="left-border">
+        <center-left-1></center-left-1>
+      </dv-border-box-12>
+      
+      <!-- 中心地图展示区域 -->
+      <center ></center>
 
-          <!-- 第四行数据 -->
-          <div class="bototm-box">
-            <dv-border-box-13>
-              <bottomLeft />
-            </dv-border-box-13>
-            <dv-border-box-12>
-              <bottomRight />
-            </dv-border-box-12>
-          </div>
-        </div>
+      <!-- 右侧排名 -->
+      <dv-border-box-13 class="right-border">
+        <center-right style=""></center-right>
+      </dv-border-box-13>
+
+      <!-- 中间数字盘 -->
+      <center-bottom></center-bottom>
+
+      <!-- 底部表格 -->
+      <div class="bottom-table">
+        <dv-border-box-13 style="width:49%">
+          <bottomLeft />
+        </dv-border-box-13>
+        <dv-border-box-12 style="width:49%">
+          <bottomRight />
+        </dv-border-box-12>
       </div>
-    </dv-full-screen-container>
+      
+      
+    </div>
   </div>
 </template>
 
 <script>
 import { formatTime } from '../../utils/index.js'
-import centerLeft1 from "./childComps/centerLeft1";
-import centerLeft2 from "./childComps/centerLeft2";
-import centerRight1 from "./childComps/centerRight1";
-import centerRight2 from "./childComps/centerRight2";
-import center from "./childComps/center";
-import bottomLeft from "./childComps/bottomLeft";
-import bottomRight from "./childComps/bottomRight";
+import navbar from "../../components/navbar/navbar.vue"
+import center from "./childComps/center"
+import centerRight from "./childComps/centerRight.vue"
+import centerLeft1 from "./childComps/centerLeft1.vue"
+import bottomLeft from "./childComps/bottomLeft.vue"
+import bottomRight from "./childComps/bottomRight.vue"
+import centerBottom from "./childComps/centerBottom.vue"
+
 
 export default {
   data () {
     return {
-      loading: true,
+      isShow:true,
       dateDay: null,
       dateYear: null,
       dateWeek: null,
@@ -117,35 +60,75 @@ export default {
     };
   },
   components: {
-    centerLeft1,
-    centerLeft2,
-    centerRight1,
-    centerRight2,
+    navbar,
     center,
+    centerRight,
+    centerLeft1,
     bottomLeft,
-    bottomRight
+    bottomRight,
+    centerBottom,
   },
   mounted () {
     this.timeFn();
-    this.cancelLoading();
+    setTimeout(() => {
+      this.isShow = false;
+    },1000)
   },
   methods: {
+    // 时间
     timeFn () {
       setInterval(() => {
         this.dateDay = formatTime(new Date(), 'HH: mm: ss');
         this.dateYear = formatTime(new Date(), 'yyyy-MM-dd');
         this.dateWeek = this.weekday[new Date().getDay()];
-      }, 1000)
-    },
-    cancelLoading () {
-      setTimeout(() => {
-        this.loading = false;
-      }, 500);
+      }, 500)
     }
   }
 };
 </script>
 
 <style lang="scss">
-  @import '../../assets/scss/home.scss';
+  // @import '../../assets/scss/home.scss';
+  #home{
+    color: #d3d6dd;
+    background-color: #000000;
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  .bg {
+    width: 100%;
+    padding: 0.2rem 0.2rem 0 0.2rem;
+    background-image: url("../../assets/img/bg.jpg");
+    background-size: cover;
+    background-position: center center;
+  }
+    // 中间左边
+  .left-border{
+    width: 23%;
+    height: 8rem;
+    margin-top: 0.2rem;
+  }
+  // 中间右边
+  .right-border{
+    width: 23%;
+    height: 8rem;
+    position: absolute;
+    right: 0.2rem;
+    top: 1.65rem;
+  }
+  // 左下
+  .left-bottom{
+   width: 25%; 
+   height: 6.225rem;
+   position: absolute;
+   top:10rem
+  }
+  // 底部两个表格
+  .bottom-table{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    // margin-top: 2.3rem;
+  }
 </style>

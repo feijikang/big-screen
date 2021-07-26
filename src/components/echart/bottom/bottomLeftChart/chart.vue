@@ -1,6 +1,6 @@
 <template>
   <div>
-    <!-- 年度开工率 -->
+    <!-- 年度完成率 -->
     <Echart
       :options="options"
       id="bottomLeftChart"
@@ -46,7 +46,7 @@ export default {
             }
           },
           legend: {
-            data: ["已贯通", "计划贯通", "贯通率"],
+            data: ["已完成", "计划完成", "完成率"],
             textStyle: {
               color: "#B4B4B4"
             },
@@ -95,7 +95,7 @@ export default {
           ],
           series: [
             {
-              name: "贯通率",
+              name: "完成率",
               type: "line",
               smooth: true,
               showAllSymbol: true,
@@ -110,7 +110,7 @@ export default {
               data: newData.rateData
             },
             {
-              name: "已贯通",
+              name: "已完成",
               type: "bar",
               barWidth: 10,
               itemStyle: {
@@ -125,7 +125,7 @@ export default {
               data: newData.barData
             },
             {
-              name: "计划贯通",
+              name: "计划完成",
               type: "bar",
               barGap: "-100%",
               barWidth: 10,

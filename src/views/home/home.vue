@@ -103,6 +103,7 @@ export default {
     background-size: cover;
     background-position: center center;
   }
+  
     // 中间左边
   .left-border{
     width: 23%;
